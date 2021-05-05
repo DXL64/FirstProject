@@ -1,0 +1,258 @@
+#include "FunctionInMain.h"
+
+bool CheckCollision(MainObject& Dino, Enemy& Enem)
+{
+
+    bool check = false ;
+
+    int leftDino = Dino.GetXPos() ;
+    int rightDino = leftDino + Dino.GetWidth_() ;
+    int topDino = Dino.GetYPos() ;
+    int botDino = topDino + Dino.GetHeight_() ;
+
+    int leftEnem = Enem.GetXPos() ;
+    int rightEnem = leftEnem + Enem.GetWidth_() ;
+    int topEnem = Enem.GetYPos() ;
+    int botEnem = topEnem + Enem.GetHeight_()  ;
+    if(Enem.GetType() == IN_AIR_ENEMY)
+    {
+        leftEnem += 22 ;
+        rightEnem -= 22 ;
+        botEnem -= 18 ;
+        if(Dino.GetStatus() == FALL || Dino.GetStatus() == JUMP)
+        {
+            if(leftEnem <= rightDino && rightDino <= rightEnem)
+            {
+                if(botEnem >= topDino && topDino >= topEnem || botDino >= topEnem && botDino <= botEnem)
+                {
+                    check = 1 ;
+                }
+            }
+        }
+    }
+    else
+    {
+        leftEnem += 25 ;
+        rightEnem -= 25 ;
+        botEnem += 30 ;
+        if(Dino.isOnGround())
+        {
+            cout << check << "\n" ;
+            if(leftEnem <= rightDino && rightDino <= rightEnem)
+            {
+                if(botEnem >= topDino && topDino >= topEnem)
+                    check = 1 ;
+            }
+        }
+    }
+    return check ;
+}
+
+void HandlePlayButton(SDL_Event* e, Button& PlayButton, bool& QuitMenu, bool& PlayGame, Mix_Chunk *gClickMusic)
+{
+
+    if(PlayButton.isInside(e))
+    {
+        if(e->type == SDL_MOUSEMOTION)
+        {
+            PlayButton.status = BUTTON_MOUSE_DOWN ;
+        }
+        else if(e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+            PlayButton.status = BUTTON_MOUSE_DOWN ;
+            PlayGame = true ;
+            QuitMenu = true ;
+        }
+    }
+    else
+        PlayButton.status = BUTTON_MOUSE_UP ;
+}
+
+void HandleHelpButton(SDL_Event* e,
+            Button& HelpButton, Button& BackButton,
+            bool& QuitGame, BaseObject& gInstruction,
+            SDL_Renderer* screen, Mix_Chunk *gClickMusic)
+{
+
+    if(HelpButton.isInside(e))
+    {
+        if(e->type == SDL_MOUSEMOTION)
+        {
+            HelpButton.status = BUTTON_MOUSE_DOWN ;
+        }
+        else if(e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+            HelpButton.status = BUTTON_MOUSE_DOWN ;
+
+            bool backMenu = false ;
+            while(!backMenu)
+            {
+                while(SDL_PollEvent(e) != 0)
+                {
+                    if(e->type == SDL_QUIT)
+                    {
+                        backMenu = true ;
+                        QuitGame = true ;
+                    }
+                    else if(BackButton.isInside(e))
+                    {
+                        if(e->type == SDL_MOUSEMOTION)
+                        {
+                            BackButton.status = BUTTON_MOUSE_DOWN ;
+                        }
+                        else if(e->type == SDL_MOUSEBUTTONDOWN)
+                        {
+                            Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+                            BackButton.status = BUTTON_MOUSE_DOWN ;
+                            backMenu  = true ;
+                        }
+                    }
+                    else
+                    {
+                        BackButton.status = BUTTON_MOUSE_UP ;
+                    }
+                    gInstruction.Render(0, 0, screen) ;
+
+                    BackButton.RenderButton(screen) ;
+
+                    SDL_RenderPresent(screen) ;
+
+                }
+            }
+        }
+    }
+    else
+    {
+        HelpButton.status = BUTTON_MOUSE_UP ;
+    }
+}
+
+void HandleExitButton(SDL_Event* e, Button& ExitButton, bool& QuitGame, Mix_Chunk* gClickMusic)
+{
+    if(ExitButton.isInside(e))
+    {
+        if(e->type == SDL_MOUSEMOTION)
+        {
+            ExitButton.status = BUTTON_MOUSE_DOWN ;
+        }
+        else if(e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+            ExitButton.status = BUTTON_MOUSE_DOWN ;
+            QuitGame  = true ;
+        }
+    }
+    else
+        ExitButton.status = BUTTON_MOUSE_UP ;
+}
+
+void HandleContinueButton(SDL_Event* e,
+            Button& ContinueButton,
+            bool& GameState, BaseObject& gContinueButton,
+            SDL_Renderer* screen, Mix_Chunk *gClickMusic)
+{
+
+    bool backGame = false ;
+    while(!backGame)
+    {
+        while(SDL_PollEvent(e) != 0)
+        {
+            if(ContinueButton.isInside(e))
+            {
+                if(e->type == SDL_MOUSEMOTION)
+                {
+                    ContinueButton.status = BUTTON_MOUSE_DOWN ;
+                }
+                else if(e->type == SDL_MOUSEBUTTONDOWN)
+                {
+                    Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+                    Mix_ResumeMusic() ;
+                    ContinueButton.status = BUTTON_MOUSE_DOWN ;
+                    GameState = true ;
+                    backGame  = true ;
+                }
+            }
+            else
+                ContinueButton.status = BUTTON_MOUSE_UP ;
+
+            ContinueButton.RenderButton(screen) ;
+
+            SDL_RenderPresent(screen) ;
+        }
+    }
+}
+
+void HandlePauseButton(SDL_Event* e,
+            Button& PauseButton, Button& ContinueButton,
+            bool& GameState, BaseObject& gContinueButton,
+            SDL_Renderer* screen, Mix_Chunk *gClickMusic)
+{
+    if(PauseButton.isInside(e))
+    {
+        if(e->type == SDL_MOUSEMOTION)
+            PauseButton.status = BUTTON_MOUSE_DOWN ;
+        else if(e->type == SDL_MOUSEBUTTONDOWN)
+        {
+            PauseButton.status = BUTTON_MOUSE_DOWN ;
+            Mix_PlayChannel(MIX_CHANNEL, gClickMusic, 0) ;
+            Mix_PauseMusic() ;
+        }
+        else if(e->type == SDL_MOUSEBUTTONUP)
+        {
+            GameState = false ;
+            HandleContinueButton(e, ContinueButton,
+                    GameState, gContinueButton,
+                    screen, gClickMusic) ;
+        }
+    }
+    else
+        PauseButton.status = BUTTON_MOUSE_UP ;
+}
+
+void DrawPlayScore(BaseObject& gTextScore, BaseObject& gScore,
+                         TTF_Font* gFont, SDL_Color textColor,
+                         int &score, SDL_Renderer* screen)
+{
+    gTextScore.Render(TEXT_SCORE_X, TEXT_SCORE_Y, screen) ;
+    if(gScore.LoadText(to_string(score), gFont, textColor, screen))
+        gScore.Render(SCORE_X, SCORE_Y, screen) ;
+}
+
+void DrawPlayerHighScore(BaseObject& gTextHighScore, BaseObject& gHighScore,
+                         TTF_Font* gFont, SDL_Color textColor,
+                         int &highScore, SDL_Renderer* screen)
+{
+    gTextHighScore.Render(TEXT_HIGH_SCORE_X, TEXT_HIGH_SCORE_Y, screen) ;
+    if(gHighScore.LoadText(to_string(highScore), gFont, textColor, screen))
+        gHighScore.Render(HIGH_SCORE_X, HIGH_SCORE_Y, screen) ;
+}
+
+int GetHighScore()
+{
+    freopen("highscore.txt", "r", stdin) ;
+    int HighScore ;
+    cin >> HighScore ;
+    return HighScore ;
+}
+
+void UpdateHighScore(int &score, int& oldHighScore)
+{
+    freopen("highscore.txt", "w", stdout) ;
+
+    if(score >= oldHighScore)
+        cout << score ;
+    else cout << oldHighScore ;
+}
+
+void UpdateScore(int &score, int &acceleration, int &time)
+{
+    if(time == 2 * FRAME_PER_SECOND)
+        acceleration++ ;
+    else if(time > FRAME_PER_SECOND) time = 0 ;
+    if(time % 4 == 0)
+        score++ ;
+    time++ ;
+}
+

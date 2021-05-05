@@ -1,20 +1,71 @@
 # depslib dependency file v1.0
-1615332515 source:d:\game_c++\firstproject\source\commonfunction.cpp
+1619339772 source:d:\game_c++\firstproject\source\commonfunction.cpp
 	"commonFunction.h"
 
-1615338605 d:\game_c++\firstproject\source\commonfunction.h
+1620155592 d:\game_c++\firstproject\source\commonfunction.h
 	<bits/stdc++.h>
 	<windows.h>
 	<SDL.h>
 	<SDL_image.h>
+	<SDL_mixer.h>
+	<SDL_ttf.h>
 
-1615337995 source:d:\game_c++\firstproject\source\source.cpp
-	"commonFunction.h"
+1620157084 source:d:\game_c++\firstproject\source\source.cpp
+	"CommonFunction.h"
+	"BaseObject.h"
+	"MainObject.h"
+	"Map.h"
+	"Timer.h"
+	"EnemyObject.h"
+	"Button.h"
+	"FunctionInMain.h"
+
+1619544402 source:d:\game_c++\firstproject\source\baseobject.cpp
 	"BaseObject.h"
 
-1615338200 source:d:\game_c++\firstproject\source\baseobject.cpp
+1619544407 d:\game_c++\firstproject\source\baseobject.h
+	"CommonFunction.h"
+
+1620156809 source:d:\game_c++\firstproject\source\map.cpp
+	"Map.h"
+
+1620156421 d:\game_c++\firstproject\source\map.h
+	"CommonFunction.h"
 	"BaseObject.h"
 
-1615337313 d:\game_c++\firstproject\source\baseobject.h
-	"commonFunction.h"
+1620157072 source:d:\game_c++\firstproject\source\mainobject.cpp
+	"MainObject.h"
+
+1620157013 d:\game_c++\firstproject\source\mainobject.h
+	"CommonFunction.h"
+	"BaseObject.h"
+
+1620156319 source:d:\game_c++\firstproject\source\button.cpp
+	"Button.h"
+
+1620154233 source:d:\game_c++\firstproject\source\timer.cpp
+	"Timer.h"
+
+1620154231 d:\game_c++\firstproject\source\timer.h
+	"CommonFunction.h"
+
+1620156984 source:d:\game_c++\firstproject\source\enemyobject.cpp
+	"EnemyObject.h"
+
+1620156141 d:\game_c++\firstproject\source\enemyobject.h
+	"CommonFunction.h"
+	"BaseObject.h"
+
+1620153700 d:\game_c++\firstproject\source\functioninmain.h
+	"CommonFunction.h"
+	"MainObject.h"
+	"EnemyObject.h"
+	"Button.h"
+
+1620185444 source:d:\game_c++\firstproject\source\functioninmain.cpp
+	"FunctionInMain.h"
+
+1620156300 d:\game_c++\firstproject\source\button.h
+	"CommonFunction.h"
+	"BaseObject.h"
 

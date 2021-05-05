@@ -32,6 +32,22 @@
 			<Add option="-Wall" />
 			<Add option="-fexceptions" />
 		</Compiler>
+		<Unit filename="BaseObject.cpp" />
+		<Unit filename="BaseObject.h" />
+		<Unit filename="Button.cpp" />
+		<Unit filename="Button.h" />
+		<Unit filename="CommonFunction.cpp" />
+		<Unit filename="CommonFunction.h" />
+		<Unit filename="EnemyObject.cpp" />
+		<Unit filename="EnemyObject.h" />
+		<Unit filename="FunctionInMain.cpp" />
+		<Unit filename="FunctionInMain.h" />
+		<Unit filename="MainObject.cpp" />
+		<Unit filename="MainObject.h" />
+		<Unit filename="Map.cpp" />
+		<Unit filename="Map.h" />
+		<Unit filename="Timer.cpp" />
+		<Unit filename="Timer.h" />
 		<Unit filename="source.cpp" />
 		<Extensions>
 			<code_completion />
