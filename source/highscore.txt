@@ -1,1 +1,7 @@
-101
+dxlocv 1044
+dxlocv 159
+dxlocv 81
+dxlocv 78
+dxlocv 72
+loc7 70
+dxlocv 63

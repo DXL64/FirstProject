@@ -10,7 +10,10 @@ Button::Button(int x, int y)
 bool Button::LoadButton(string file_path, SDL_Renderer* screen)
 {
     bool success = BaseObject::LoadImg(file_path, screen) ;
-    buttonWidth = bRect.w /2 ;
+    if(status == ONE_SPIRTES)
+        buttonWidth = bRect.w ;
+    else
+        buttonWidth = bRect.w /2 ;
     buttonHeight = bRect.h ;
     return success ;
 }
@@ -58,6 +61,11 @@ bool Button::isInside(SDL_Event* e)
 
  void Button::RenderButton(SDL_Renderer* screen)
  {
+     if(status == ONE_SPIRTES)
+     {
+         BaseObject::Render(xPos, yPos, screen) ;
+         return ;
+     }
      SDL_Rect* clip = &frameClip[status] ;
      BaseObject::Render(xPos, yPos, screen, clip) ;
  }

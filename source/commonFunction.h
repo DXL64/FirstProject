@@ -69,8 +69,13 @@ const int MIX_CHANNEL = -1 ;
 const int BUTTON_SPRITES = 2 ;
 const int BUTTON_MOUSE_DOWN = 0 ;
 const int BUTTON_MOUSE_UP = 1 ;
+const int ONE_SPIRTES = 3 ;
 const int SMALL_BUTTON = 1 ;
 const int COMMON_BUTTON = 2 ;
+
+const int SIZE_OF_PIXEL_FONT = 28;
+const int SIZE_OF_SEGOEUI_FONT = 55;
+const int NUMBER_RANK = 7 ;
 
 const int PLAY_BUTON_POSX = 390;
 const int PLAY_BUTTON_POSY= 180;
@@ -78,8 +83,8 @@ const int HELP_BUTTON_POSX = 390;
 const int HELP_BUTTON_POSY = 290;
 const int EXIT_BUTTON_POSX = 390;
 const int EXIT_BUTTON_POSY = 400;
-const int BACK_BUTTON_POSX = 30;
-const int BACK_BUTTON_POSY = 30;
+const int BACK_BUTTON_POSX = 15;
+const int BACK_BUTTON_POSY = 15;
 const int PAUSE_BUTTON_POSX = 30;
 const int PAUSE_BUTTON_POSY = 30;
 const int CONTINUE_BUTTON_POSX = 30;
@@ -92,9 +97,23 @@ const int MEDIUM_BUTTON_POSY = 290;
 const int HARD_BUTTON_POSX = 389;
 const int HARD_BUTTON_POSY = 400;
 
+const int GREEN_DINO_POSX = 145 ;
+const int GREEN_DINO_POSY = 312 ;
+const int BLUE_DINO_POSX = 318 ;
+const int BLUE_DINO_POSY = 312 ;
+const int GOLD_DINO_POSX = 486 ;
+const int GOLD_DINO_POSY = 312 ;
+const int RED_DINO_POSX = 655 ;
+const int RED_DINO_POSY = 312 ;
+
 const int EASY_OPTION = 1 ;
 const int MEDIUM_OPTION = 2 ;
 const int HARD_OPTION = 3 ;
+
+const int BLUE_OPTION = 1 ;
+const int RED_OPTION = 2 ;
+const int GOLD_OPTION = 3 ;
+const int GREEN_OPTION = 4 ;
 
 const int TEXT_SCORE_X = 670;
 const int TEXT_SCORE_Y = 20;

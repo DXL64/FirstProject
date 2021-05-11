@@ -54,7 +54,6 @@ void BaseObject::Render(int x, int y, SDL_Renderer* des, SDL_Rect* clip)
 }
 bool BaseObject::LoadText(string Text,TTF_Font *gFont, SDL_Color textColor, SDL_Renderer *screen)
 {
-
     SDL_Texture* newTexture = NULL ;
 	SDL_Surface* loadSurface = TTF_RenderText_Solid(gFont, Text.c_str(), textColor);
 	if (loadSurface == NULL) return 0 ;
